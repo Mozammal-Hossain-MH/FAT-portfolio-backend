@@ -1,0 +1,12 @@
+{
+  "name": "FAT-portfolio-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "repository": "https://github.com/Mozammal-Hossain-MH/FAT-portfolio-backend.git",
+  "author": "Mozammal",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
