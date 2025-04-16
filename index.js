@@ -1,8 +1,12 @@
+import dotenv from "dotenv";
 import express from "express";
-import { Client } from "pg";
+import pkg from "pg";
+import router from "./routes/routes.js";
 const app = express();
 const port = 5000;
 
+dotenv.config();
+const { Client } = pkg;
 const client = new Client({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
@@ -13,8 +17,10 @@ const client = new Client({
 
 client.connect();
 
-app.get("/", (req, res) => {
-  res.json("Hello World!");
+app.use("/api", router);
+
+app.get("/api", (req, res) => {
+  res.json({ data: "Hello from FAT-portfolio-backend!" });
 });
 
 app.listen(port, () => {
