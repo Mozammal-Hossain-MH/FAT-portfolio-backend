@@ -7,10 +7,15 @@
   "author": "Mozammal",
   "license": "MIT",
   "dependencies": {
+    "@prisma/client": "^6.6.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "pg": "^8.14.1"
+    "http-status": "^2.1.0",
+    "pg": "^8.14.1",
+    "prisma": "^6.6.0",
+    "winston": "^3.17.0",
+    "yup": "^1.6.1"
   }
 }
