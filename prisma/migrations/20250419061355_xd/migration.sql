@@ -1,0 +1,11 @@
+-- CreateTable
+CREATE TABLE "Facts" (
+    "id" SERIAL NOT NULL,
+    "Icon" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "value" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Facts_pkey" PRIMARY KEY ("id")
+);
