@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "postinstall": "prisma generate"
+  },
   "repository": "https://github.com/Mozammal-Hossain-MH/FAT-portfolio-backend.git",
   "author": "Mozammal",
   "license": "MIT",

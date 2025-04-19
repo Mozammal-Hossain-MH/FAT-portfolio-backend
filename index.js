@@ -7,7 +7,7 @@ import { fileURLToPath } from "url";
 import errorHandler from "./middlewares/errorHandler.js";
 import router from "./routes/routes.js";
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 dotenv.config();
 // const { Client } = pkg;

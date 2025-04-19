@@ -1,7 +1,7 @@
 import status from "http-status";
+import prisma from "../../constants/prismaClient.js";
 import responseSender from "../../constants/responseSender.js";
 import tryCatch from "../../constants/tryCatch.js";
-import prisma from "../../lib/prisma.js";
 import factsSchema from "./facts.validation.js";
 
 const getAllFacts = tryCatch(async (req, res) => {
