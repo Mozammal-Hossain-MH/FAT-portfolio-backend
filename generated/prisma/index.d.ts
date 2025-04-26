@@ -1891,15 +1891,15 @@ export namespace Prisma {
 
   export type FactsWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    name?: string
     AND?: FactsWhereInput | FactsWhereInput[]
     OR?: FactsWhereInput[]
     NOT?: FactsWhereInput | FactsWhereInput[]
     Icon?: StringFilter<"Facts"> | string
-    name?: StringFilter<"Facts"> | string
     value?: StringFilter<"Facts"> | string
     createdAt?: DateTimeFilter<"Facts"> | Date | string
     updatedAt?: DateTimeFilter<"Facts"> | Date | string
-  }, "id">
+  }, "id" | "name">
 
   export type FactsOrderByWithAggregationInput = {
     id?: SortOrder

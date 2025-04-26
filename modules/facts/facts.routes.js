@@ -7,4 +7,8 @@ factsRouter.get("/", factsController.getAllFacts);
 
 factsRouter.post("/", factsController.createFacts);
 
+factsRouter.put("/", factsController.updateFacts);
+
+factsRouter.delete("/:id", factsController.deleteFacts);
+
 export default factsRouter;
