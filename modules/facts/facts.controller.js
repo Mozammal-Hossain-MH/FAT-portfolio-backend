@@ -5,12 +5,12 @@ import { checkIfIdIsValidOrNot } from "../../constants/checkIfIdIsValidOrNot.js"
 import prisma from "../../constants/prismaClient.js";
 import responseSender from "../../constants/responseSender.js";
 import tryCatch from "../../constants/tryCatch.js";
+import { factsServices } from "./facts.services.js";
 import { factsSchema } from "./facts.validation.js";
 
 const getAllFacts = tryCatch(async (req, res) => {
   // QUERY
-  const total = await prisma.facts.count();
-  const result = await prisma.facts.findMany();
+  const data = await factsServices.getAllFacts();
 
   // SUCCESS RESPONSE
   responseSender(res, {
@@ -18,9 +18,9 @@ const getAllFacts = tryCatch(async (req, res) => {
     success: true,
     message: "All Facts",
     meta: {
-      total,
+      total: data?.total,
     },
-    data: result,
+    data: data?.result,
   });
 });
 
@@ -32,24 +32,15 @@ const createFacts = tryCatch(async (req, res) => {
     "Invalid request body. Pass { Icon, name, value}"
   );
 
-  const { Icon, name, value } = req.body;
-
   // VALIDATION
   const facts = await prisma.facts.findMany();
-
   await factsSchema.validate(req.body, {
     context: { existingNames: facts.map((fact) => fact.name), isUpdate: false },
     abortEarly: false,
   });
 
   // QUERY
-  const result = await prisma.facts.create({
-    data: {
-      Icon,
-      name,
-      value,
-    },
-  });
+  const result = await factsServices.createFacts(req.body);
 
   // SUCCESS RESPONSE
   responseSender(res, {
@@ -68,7 +59,13 @@ const updateFacts = tryCatch(async (req, res) => {
     "Invalid request body. Pass { id, Icon, name, value}"
   );
 
-  const { id, Icon, name, value } = req.body;
+  const { id } = req.body;
+
+  // CHECK IF ID IS VALID OR NOT
+  checkIfIdIsValidOrNot(res, id);
+
+  // NOW CHECK IF THE FACT EXISTS
+  checkIfDataExistOrNot({ res, collection: "facts", id, message: "Fact" });
 
   // VALIDATION
   const facts = await prisma.facts.findMany();
@@ -76,23 +73,14 @@ const updateFacts = tryCatch(async (req, res) => {
     abortEarly: false,
     context: {
       existingNames: facts
-        .filter((fact) => fact.id !== id)
+        .filter((fact) => fact.id !== Number(id))
         .map((fact) => fact.name),
       isUpdate: true,
     },
   });
 
   // QUERY
-  const result = await prisma.facts.update({
-    where: {
-      id,
-    },
-    data: {
-      Icon,
-      name,
-      value,
-    },
-  });
+  const result = await factsServices.updateFacts(req.body);
 
   // SUCCESS RESPONSE
   responseSender(res, {
@@ -110,14 +98,10 @@ const deleteFacts = tryCatch(async (req, res) => {
   checkIfIdIsValidOrNot(res, id);
 
   // NOW CHECK IF THE FACT EXISTS
-  checkIfDataExistOrNot(res, "facts", id, "Fact");
+  checkIfDataExistOrNot({ res, collection: "facts", id, message: "Fact" });
 
   // RUN QUERY
-  const result = await prisma.facts.delete({
-    where: {
-      id: Number(id),
-    },
-  });
+  const result = await factsServices.deleteFacts(Number(id));
 
   // SUCCESS RESPONSE
   responseSender(res, {
