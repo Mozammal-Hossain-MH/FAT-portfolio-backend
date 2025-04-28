@@ -5,18 +5,18 @@ import { checkIfIdIsValidOrNot } from "../../constants/checkIfIdIsValidOrNot.js"
 import prisma from "../../constants/prismaClient.js";
 import responseSender from "../../constants/responseSender.js";
 import tryCatch from "../../constants/tryCatch.js";
-import { factsServices } from "./facts.services.js";
-import { factsSchema } from "./facts.validation.js";
+import { MenusServices } from "./menus.services.js";
+import { menusSchema } from "./menus.validation.js";
 
-const getAllFacts = tryCatch(async (req, res) => {
+const getAllMenus = tryCatch(async (req, res) => {
   // QUERY
-  const data = await factsServices.getAllFacts();
+  const data = await MenusServices.getAllMenus();
 
   // SUCCESS RESPONSE
   responseSender(res, {
     statusCode: status.OK,
     success: true,
-    message: "All Facts",
+    message: "All Menus",
     meta: {
       total: data?.total,
     },
@@ -24,43 +24,46 @@ const getAllFacts = tryCatch(async (req, res) => {
   });
 });
 
-const createFacts = tryCatch(async (req, res) => {
+const createMenus = tryCatch(async (req, res) => {
   // IF NO DATA IN BODY
   if (
     !checkIfBodyHaveAnyDataOrNot(
       req,
       res,
-      "Invalid request body. Pass { Icon, name, value }"
+      "Invalid request body. Pass { title, images, url }"
     )
   )
     return;
 
   // VALIDATION
-  const facts = await prisma.facts.findMany();
-  await factsSchema.validate(req.body, {
-    context: { existingNames: facts.map((fact) => fact.name), isUpdate: false },
+  const menus = await prisma.menus.findMany();
+  await menusSchema.validate(req.body, {
+    context: {
+      existingTitles: menus.map((menu) => menu.title),
+      isUpdate: false,
+    },
     abortEarly: false,
   });
 
   // QUERY
-  const result = await factsServices.createFacts(req.body);
+  const result = await MenusServices.createMenus(req.body);
 
   // SUCCESS RESPONSE
   responseSender(res, {
     statusCode: status.CREATED,
     success: true,
-    message: "Fact created successfully",
+    message: "Menu created successfully",
     data: result,
   });
 });
 
-const updateFacts = tryCatch(async (req, res) => {
+const updateMenus = tryCatch(async (req, res) => {
   // IF NO DATA IN BODY
   if (
     !checkIfBodyHaveAnyDataOrNot(
       req,
       res,
-      "Invalid request body. Pass { id, Icon, name, value }"
+      "Invalid request body. Pass { id, title, images, url }"
     )
   )
     return;
@@ -73,66 +76,66 @@ const updateFacts = tryCatch(async (req, res) => {
   // NOW CHECK IF THE DATA EXISTS
   const dataExist = await checkIfDataExistOrNot({
     res,
-    collection: "facts",
+    collection: "menus",
     id,
-    message: "Fact",
+    message: "Menu",
   });
   if (!dataExist) return;
 
   // VALIDATION
-  const facts = await prisma.facts.findMany();
-  await factsSchema.validate(req.body, {
+  const menus = await prisma.menus.findMany();
+  await menusSchema.validate(req.body, {
     abortEarly: false,
     context: {
-      existingNames: facts
-        .filter((fact) => fact.id !== Number(id))
-        .map((fact) => fact.name),
+      existingTitles: menus
+        .filter((menu) => menu.id !== Number(id))
+        .map((menu) => menu.title),
       isUpdate: true,
     },
   });
 
   // QUERY
-  const result = await factsServices.updateFacts(req.body);
+  const result = await MenusServices.updateMenus(req.body);
 
   // SUCCESS RESPONSE
   responseSender(res, {
     statusCode: status.OK,
     success: true,
-    message: "Fact updated successfully",
+    message: "Menu updated successfully",
     data: result,
   });
 });
 
-const deleteFacts = tryCatch(async (req, res) => {
+const deleteMenus = tryCatch(async (req, res) => {
   const { id } = req.params;
 
   // CHECK IF ID IS VALID OR NOT
   if (!checkIfIdIsValidOrNot(res, id)) return;
 
-  // NOW CHECK IF THE DATA EXISTS
+  // NOW CHECK IF THE FACT EXISTS
   const dataExist = await checkIfDataExistOrNot({
     res,
-    collection: "facts",
+    collection: "menus",
     id,
-    message: "Fact",
+    message: "Menu",
   });
   if (!dataExist) return;
 
   // RUN QUERY
-  const result = await factsServices.deleteFacts(Number(id));
+  const result = await MenusServices.deleteMenus(Number(id));
 
   // SUCCESS RESPONSE
   responseSender(res, {
     statusCode: status.OK,
     success: true,
-    message: "Fact deleted successfully",
+    message: "Menu deleted successfully",
     data: result,
   });
 });
 
-export const factsController = {
-  getAllFacts,
-  createFacts,
-  updateFacts,
-  deleteFacts,
+export const menusController = {
+  getAllMenus,
+  createMenus,
+  updateMenus,
+  deleteMenus,
 };

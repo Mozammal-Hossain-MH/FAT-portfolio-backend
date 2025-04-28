@@ -117,6 +117,15 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.MenusScalarFieldEnum = {
+  id: 'id',
+  images: 'images',
+  title: 'title',
+  url: 'url',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.FactsScalarFieldEnum = {
   id: 'id',
   Icon: 'Icon',
@@ -131,6 +140,26 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
+exports.Prisma.MenusOrderByRelevanceFieldEnum = {
+  title: 'title',
+  url: 'url'
+};
+
 exports.Prisma.FactsOrderByRelevanceFieldEnum = {
   Icon: 'Icon',
   name: 'name',
@@ -139,6 +168,7 @@ exports.Prisma.FactsOrderByRelevanceFieldEnum = {
 
 
 exports.Prisma.ModelName = {
+  Menus: 'Menus',
   Facts: 'Facts'
 };
 

@@ -14,6 +14,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
+ * Model Menus
+ * 
+ */
+export type Menus = $Result.DefaultSelection<Prisma.$MenusPayload>
+/**
  * Model Facts
  * 
  */
@@ -26,8 +31,8 @@ export type Facts = $Result.DefaultSelection<Prisma.$FactsPayload>
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Facts
- * const facts = await prisma.facts.findMany()
+ * // Fetch zero or more Menus
+ * const menus = await prisma.menus.findMany()
  * ```
  *
  *
@@ -47,8 +52,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Facts
-   * const facts = await prisma.facts.findMany()
+   * // Fetch zero or more Menus
+   * const menus = await prisma.menus.findMany()
    * ```
    *
    *
@@ -145,6 +150,16 @@ export class PrismaClient<
   }>>
 
       /**
+   * `prisma.menus`: Exposes CRUD operations for the **Menus** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Menus
+    * const menus = await prisma.menus.findMany()
+    * ```
+    */
+  get menus(): Prisma.MenusDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.facts`: Exposes CRUD operations for the **Facts** model.
     * Example usage:
     * ```ts
@@ -593,6 +608,7 @@ export namespace Prisma {
 
 
   export const ModelName: {
+    Menus: 'Menus',
     Facts: 'Facts'
   };
 
@@ -612,10 +628,76 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "facts"
+      modelProps: "menus" | "facts"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
+      Menus: {
+        payload: Prisma.$MenusPayload<ExtArgs>
+        fields: Prisma.MenusFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MenusFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenusPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MenusFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenusPayload>
+          }
+          findFirst: {
+            args: Prisma.MenusFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenusPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MenusFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenusPayload>
+          }
+          findMany: {
+            args: Prisma.MenusFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenusPayload>[]
+          }
+          create: {
+            args: Prisma.MenusCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenusPayload>
+          }
+          createMany: {
+            args: Prisma.MenusCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.MenusDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenusPayload>
+          }
+          update: {
+            args: Prisma.MenusUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenusPayload>
+          }
+          deleteMany: {
+            args: Prisma.MenusDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MenusUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.MenusUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenusPayload>
+          }
+          aggregate: {
+            args: Prisma.MenusAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMenus>
+          }
+          groupBy: {
+            args: Prisma.MenusGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MenusGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MenusCountArgs<ExtArgs>
+            result: $Utils.Optional<MenusCountAggregateOutputType> | number
+          }
+        }
+      }
       Facts: {
         payload: Prisma.$FactsPayload<ExtArgs>
         fields: Prisma.FactsFieldRefs
@@ -766,6 +848,7 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
+    menus?: MenusOmit
     facts?: FactsOmit
   }
 
@@ -860,6 +943,929 @@ export namespace Prisma {
   /**
    * Models
    */
+
+  /**
+   * Model Menus
+   */
+
+  export type AggregateMenus = {
+    _count: MenusCountAggregateOutputType | null
+    _avg: MenusAvgAggregateOutputType | null
+    _sum: MenusSumAggregateOutputType | null
+    _min: MenusMinAggregateOutputType | null
+    _max: MenusMaxAggregateOutputType | null
+  }
+
+  export type MenusAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type MenusSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type MenusMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    url: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MenusMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    url: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MenusCountAggregateOutputType = {
+    id: number
+    images: number
+    title: number
+    url: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MenusAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type MenusSumAggregateInputType = {
+    id?: true
+  }
+
+  export type MenusMinAggregateInputType = {
+    id?: true
+    title?: true
+    url?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MenusMaxAggregateInputType = {
+    id?: true
+    title?: true
+    url?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MenusCountAggregateInputType = {
+    id?: true
+    images?: true
+    title?: true
+    url?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MenusAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Menus to aggregate.
+     */
+    where?: MenusWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Menus to fetch.
+     */
+    orderBy?: MenusOrderByWithRelationInput | MenusOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MenusWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Menus from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Menus.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Menus
+    **/
+    _count?: true | MenusCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MenusAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MenusSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MenusMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MenusMaxAggregateInputType
+  }
+
+  export type GetMenusAggregateType<T extends MenusAggregateArgs> = {
+        [P in keyof T & keyof AggregateMenus]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMenus[P]>
+      : GetScalarType<T[P], AggregateMenus[P]>
+  }
+
+
+
+
+  export type MenusGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MenusWhereInput
+    orderBy?: MenusOrderByWithAggregationInput | MenusOrderByWithAggregationInput[]
+    by: MenusScalarFieldEnum[] | MenusScalarFieldEnum
+    having?: MenusScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MenusCountAggregateInputType | true
+    _avg?: MenusAvgAggregateInputType
+    _sum?: MenusSumAggregateInputType
+    _min?: MenusMinAggregateInputType
+    _max?: MenusMaxAggregateInputType
+  }
+
+  export type MenusGroupByOutputType = {
+    id: number
+    images: JsonValue
+    title: string
+    url: string
+    createdAt: Date
+    updatedAt: Date
+    _count: MenusCountAggregateOutputType | null
+    _avg: MenusAvgAggregateOutputType | null
+    _sum: MenusSumAggregateOutputType | null
+    _min: MenusMinAggregateOutputType | null
+    _max: MenusMaxAggregateOutputType | null
+  }
+
+  type GetMenusGroupByPayload<T extends MenusGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MenusGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MenusGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MenusGroupByOutputType[P]>
+            : GetScalarType<T[P], MenusGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MenusSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    images?: boolean
+    title?: boolean
+    url?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["menus"]>
+
+
+
+  export type MenusSelectScalar = {
+    id?: boolean
+    images?: boolean
+    title?: boolean
+    url?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MenusOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "images" | "title" | "url" | "createdAt" | "updatedAt", ExtArgs["result"]["menus"]>
+
+  export type $MenusPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Menus"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      images: Prisma.JsonValue
+      title: string
+      url: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["menus"]>
+    composites: {}
+  }
+
+  type MenusGetPayload<S extends boolean | null | undefined | MenusDefaultArgs> = $Result.GetResult<Prisma.$MenusPayload, S>
+
+  type MenusCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MenusFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MenusCountAggregateInputType | true
+    }
+
+  export interface MenusDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Menus'], meta: { name: 'Menus' } }
+    /**
+     * Find zero or one Menus that matches the filter.
+     * @param {MenusFindUniqueArgs} args - Arguments to find a Menus
+     * @example
+     * // Get one Menus
+     * const menus = await prisma.menus.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MenusFindUniqueArgs>(args: SelectSubset<T, MenusFindUniqueArgs<ExtArgs>>): Prisma__MenusClient<$Result.GetResult<Prisma.$MenusPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Menus that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MenusFindUniqueOrThrowArgs} args - Arguments to find a Menus
+     * @example
+     * // Get one Menus
+     * const menus = await prisma.menus.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MenusFindUniqueOrThrowArgs>(args: SelectSubset<T, MenusFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MenusClient<$Result.GetResult<Prisma.$MenusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Menus that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenusFindFirstArgs} args - Arguments to find a Menus
+     * @example
+     * // Get one Menus
+     * const menus = await prisma.menus.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MenusFindFirstArgs>(args?: SelectSubset<T, MenusFindFirstArgs<ExtArgs>>): Prisma__MenusClient<$Result.GetResult<Prisma.$MenusPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Menus that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenusFindFirstOrThrowArgs} args - Arguments to find a Menus
+     * @example
+     * // Get one Menus
+     * const menus = await prisma.menus.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MenusFindFirstOrThrowArgs>(args?: SelectSubset<T, MenusFindFirstOrThrowArgs<ExtArgs>>): Prisma__MenusClient<$Result.GetResult<Prisma.$MenusPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Menus that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenusFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Menus
+     * const menus = await prisma.menus.findMany()
+     * 
+     * // Get first 10 Menus
+     * const menus = await prisma.menus.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const menusWithIdOnly = await prisma.menus.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MenusFindManyArgs>(args?: SelectSubset<T, MenusFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MenusPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Menus.
+     * @param {MenusCreateArgs} args - Arguments to create a Menus.
+     * @example
+     * // Create one Menus
+     * const Menus = await prisma.menus.create({
+     *   data: {
+     *     // ... data to create a Menus
+     *   }
+     * })
+     * 
+     */
+    create<T extends MenusCreateArgs>(args: SelectSubset<T, MenusCreateArgs<ExtArgs>>): Prisma__MenusClient<$Result.GetResult<Prisma.$MenusPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Menus.
+     * @param {MenusCreateManyArgs} args - Arguments to create many Menus.
+     * @example
+     * // Create many Menus
+     * const menus = await prisma.menus.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MenusCreateManyArgs>(args?: SelectSubset<T, MenusCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Menus.
+     * @param {MenusDeleteArgs} args - Arguments to delete one Menus.
+     * @example
+     * // Delete one Menus
+     * const Menus = await prisma.menus.delete({
+     *   where: {
+     *     // ... filter to delete one Menus
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MenusDeleteArgs>(args: SelectSubset<T, MenusDeleteArgs<ExtArgs>>): Prisma__MenusClient<$Result.GetResult<Prisma.$MenusPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Menus.
+     * @param {MenusUpdateArgs} args - Arguments to update one Menus.
+     * @example
+     * // Update one Menus
+     * const menus = await prisma.menus.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MenusUpdateArgs>(args: SelectSubset<T, MenusUpdateArgs<ExtArgs>>): Prisma__MenusClient<$Result.GetResult<Prisma.$MenusPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Menus.
+     * @param {MenusDeleteManyArgs} args - Arguments to filter Menus to delete.
+     * @example
+     * // Delete a few Menus
+     * const { count } = await prisma.menus.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MenusDeleteManyArgs>(args?: SelectSubset<T, MenusDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Menus.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenusUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Menus
+     * const menus = await prisma.menus.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MenusUpdateManyArgs>(args: SelectSubset<T, MenusUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Menus.
+     * @param {MenusUpsertArgs} args - Arguments to update or create a Menus.
+     * @example
+     * // Update or create a Menus
+     * const menus = await prisma.menus.upsert({
+     *   create: {
+     *     // ... data to create a Menus
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Menus we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MenusUpsertArgs>(args: SelectSubset<T, MenusUpsertArgs<ExtArgs>>): Prisma__MenusClient<$Result.GetResult<Prisma.$MenusPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Menus.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenusCountArgs} args - Arguments to filter Menus to count.
+     * @example
+     * // Count the number of Menus
+     * const count = await prisma.menus.count({
+     *   where: {
+     *     // ... the filter for the Menus we want to count
+     *   }
+     * })
+    **/
+    count<T extends MenusCountArgs>(
+      args?: Subset<T, MenusCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MenusCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Menus.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenusAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MenusAggregateArgs>(args: Subset<T, MenusAggregateArgs>): Prisma.PrismaPromise<GetMenusAggregateType<T>>
+
+    /**
+     * Group by Menus.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenusGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MenusGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MenusGroupByArgs['orderBy'] }
+        : { orderBy?: MenusGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MenusGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMenusGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Menus model
+   */
+  readonly fields: MenusFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Menus.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MenusClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Menus model
+   */
+  interface MenusFieldRefs {
+    readonly id: FieldRef<"Menus", 'Int'>
+    readonly images: FieldRef<"Menus", 'Json'>
+    readonly title: FieldRef<"Menus", 'String'>
+    readonly url: FieldRef<"Menus", 'String'>
+    readonly createdAt: FieldRef<"Menus", 'DateTime'>
+    readonly updatedAt: FieldRef<"Menus", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Menus findUnique
+   */
+  export type MenusFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menus
+     */
+    select?: MenusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Menus
+     */
+    omit?: MenusOmit<ExtArgs> | null
+    /**
+     * Filter, which Menus to fetch.
+     */
+    where: MenusWhereUniqueInput
+  }
+
+  /**
+   * Menus findUniqueOrThrow
+   */
+  export type MenusFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menus
+     */
+    select?: MenusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Menus
+     */
+    omit?: MenusOmit<ExtArgs> | null
+    /**
+     * Filter, which Menus to fetch.
+     */
+    where: MenusWhereUniqueInput
+  }
+
+  /**
+   * Menus findFirst
+   */
+  export type MenusFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menus
+     */
+    select?: MenusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Menus
+     */
+    omit?: MenusOmit<ExtArgs> | null
+    /**
+     * Filter, which Menus to fetch.
+     */
+    where?: MenusWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Menus to fetch.
+     */
+    orderBy?: MenusOrderByWithRelationInput | MenusOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Menus.
+     */
+    cursor?: MenusWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Menus from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Menus.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Menus.
+     */
+    distinct?: MenusScalarFieldEnum | MenusScalarFieldEnum[]
+  }
+
+  /**
+   * Menus findFirstOrThrow
+   */
+  export type MenusFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menus
+     */
+    select?: MenusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Menus
+     */
+    omit?: MenusOmit<ExtArgs> | null
+    /**
+     * Filter, which Menus to fetch.
+     */
+    where?: MenusWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Menus to fetch.
+     */
+    orderBy?: MenusOrderByWithRelationInput | MenusOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Menus.
+     */
+    cursor?: MenusWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Menus from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Menus.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Menus.
+     */
+    distinct?: MenusScalarFieldEnum | MenusScalarFieldEnum[]
+  }
+
+  /**
+   * Menus findMany
+   */
+  export type MenusFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menus
+     */
+    select?: MenusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Menus
+     */
+    omit?: MenusOmit<ExtArgs> | null
+    /**
+     * Filter, which Menus to fetch.
+     */
+    where?: MenusWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Menus to fetch.
+     */
+    orderBy?: MenusOrderByWithRelationInput | MenusOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Menus.
+     */
+    cursor?: MenusWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Menus from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Menus.
+     */
+    skip?: number
+    distinct?: MenusScalarFieldEnum | MenusScalarFieldEnum[]
+  }
+
+  /**
+   * Menus create
+   */
+  export type MenusCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menus
+     */
+    select?: MenusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Menus
+     */
+    omit?: MenusOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Menus.
+     */
+    data: XOR<MenusCreateInput, MenusUncheckedCreateInput>
+  }
+
+  /**
+   * Menus createMany
+   */
+  export type MenusCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Menus.
+     */
+    data: MenusCreateManyInput | MenusCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Menus update
+   */
+  export type MenusUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menus
+     */
+    select?: MenusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Menus
+     */
+    omit?: MenusOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Menus.
+     */
+    data: XOR<MenusUpdateInput, MenusUncheckedUpdateInput>
+    /**
+     * Choose, which Menus to update.
+     */
+    where: MenusWhereUniqueInput
+  }
+
+  /**
+   * Menus updateMany
+   */
+  export type MenusUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Menus.
+     */
+    data: XOR<MenusUpdateManyMutationInput, MenusUncheckedUpdateManyInput>
+    /**
+     * Filter which Menus to update
+     */
+    where?: MenusWhereInput
+    /**
+     * Limit how many Menus to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Menus upsert
+   */
+  export type MenusUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menus
+     */
+    select?: MenusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Menus
+     */
+    omit?: MenusOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Menus to update in case it exists.
+     */
+    where: MenusWhereUniqueInput
+    /**
+     * In case the Menus found by the `where` argument doesn't exist, create a new Menus with this data.
+     */
+    create: XOR<MenusCreateInput, MenusUncheckedCreateInput>
+    /**
+     * In case the Menus was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MenusUpdateInput, MenusUncheckedUpdateInput>
+  }
+
+  /**
+   * Menus delete
+   */
+  export type MenusDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menus
+     */
+    select?: MenusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Menus
+     */
+    omit?: MenusOmit<ExtArgs> | null
+    /**
+     * Filter which Menus to delete.
+     */
+    where: MenusWhereUniqueInput
+  }
+
+  /**
+   * Menus deleteMany
+   */
+  export type MenusDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Menus to delete
+     */
+    where?: MenusWhereInput
+    /**
+     * Limit how many Menus to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Menus without action
+   */
+  export type MenusDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menus
+     */
+    select?: MenusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Menus
+     */
+    omit?: MenusOmit<ExtArgs> | null
+  }
+
 
   /**
    * Model Facts
@@ -1802,6 +2808,18 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+  export const MenusScalarFieldEnum: {
+    id: 'id',
+    images: 'images',
+    title: 'title',
+    url: 'url',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MenusScalarFieldEnum = (typeof MenusScalarFieldEnum)[keyof typeof MenusScalarFieldEnum]
+
+
   export const FactsScalarFieldEnum: {
     id: 'id',
     Icon: 'Icon',
@@ -1822,6 +2840,38 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+  export const QueryMode: {
+    default: 'default',
+    insensitive: 'insensitive'
+  };
+
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const MenusOrderByRelevanceFieldEnum: {
+    title: 'title',
+    url: 'url'
+  };
+
+  export type MenusOrderByRelevanceFieldEnum = (typeof MenusOrderByRelevanceFieldEnum)[keyof typeof MenusOrderByRelevanceFieldEnum]
+
+
   export const FactsOrderByRelevanceFieldEnum: {
     Icon: 'Icon',
     name: 'name',
@@ -1840,6 +2890,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -1866,6 +2930,66 @@ export namespace Prisma {
    * Deep Input Types
    */
 
+
+  export type MenusWhereInput = {
+    AND?: MenusWhereInput | MenusWhereInput[]
+    OR?: MenusWhereInput[]
+    NOT?: MenusWhereInput | MenusWhereInput[]
+    id?: IntFilter<"Menus"> | number
+    images?: JsonFilter<"Menus">
+    title?: StringFilter<"Menus"> | string
+    url?: StringFilter<"Menus"> | string
+    createdAt?: DateTimeFilter<"Menus"> | Date | string
+    updatedAt?: DateTimeFilter<"Menus"> | Date | string
+  }
+
+  export type MenusOrderByWithRelationInput = {
+    id?: SortOrder
+    images?: SortOrder
+    title?: SortOrder
+    url?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _relevance?: MenusOrderByRelevanceInput
+  }
+
+  export type MenusWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    title?: string
+    AND?: MenusWhereInput | MenusWhereInput[]
+    OR?: MenusWhereInput[]
+    NOT?: MenusWhereInput | MenusWhereInput[]
+    images?: JsonFilter<"Menus">
+    url?: StringFilter<"Menus"> | string
+    createdAt?: DateTimeFilter<"Menus"> | Date | string
+    updatedAt?: DateTimeFilter<"Menus"> | Date | string
+  }, "id" | "title">
+
+  export type MenusOrderByWithAggregationInput = {
+    id?: SortOrder
+    images?: SortOrder
+    title?: SortOrder
+    url?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MenusCountOrderByAggregateInput
+    _avg?: MenusAvgOrderByAggregateInput
+    _max?: MenusMaxOrderByAggregateInput
+    _min?: MenusMinOrderByAggregateInput
+    _sum?: MenusSumOrderByAggregateInput
+  }
+
+  export type MenusScalarWhereWithAggregatesInput = {
+    AND?: MenusScalarWhereWithAggregatesInput | MenusScalarWhereWithAggregatesInput[]
+    OR?: MenusScalarWhereWithAggregatesInput[]
+    NOT?: MenusScalarWhereWithAggregatesInput | MenusScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Menus"> | number
+    images?: JsonWithAggregatesFilter<"Menus">
+    title?: StringWithAggregatesFilter<"Menus"> | string
+    url?: StringWithAggregatesFilter<"Menus"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Menus"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Menus"> | Date | string
+  }
 
   export type FactsWhereInput = {
     AND?: FactsWhereInput | FactsWhereInput[]
@@ -1925,6 +3049,66 @@ export namespace Prisma {
     value?: StringWithAggregatesFilter<"Facts"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Facts"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Facts"> | Date | string
+  }
+
+  export type MenusCreateInput = {
+    images: JsonNullValueInput | InputJsonValue
+    title: string
+    url: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MenusUncheckedCreateInput = {
+    id?: number
+    images: JsonNullValueInput | InputJsonValue
+    title: string
+    url: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MenusUpdateInput = {
+    images?: JsonNullValueInput | InputJsonValue
+    title?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MenusUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    images?: JsonNullValueInput | InputJsonValue
+    title?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MenusCreateManyInput = {
+    id?: number
+    images: JsonNullValueInput | InputJsonValue
+    title: string
+    url: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MenusUpdateManyMutationInput = {
+    images?: JsonNullValueInput | InputJsonValue
+    title?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MenusUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    images?: JsonNullValueInput | InputJsonValue
+    title?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FactsCreateInput = {
@@ -1997,6 +3181,29 @@ export namespace Prisma {
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
   }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
@@ -2022,6 +3229,119 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type MenusOrderByRelevanceInput = {
+    fields: MenusOrderByRelevanceFieldEnum | MenusOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type MenusCountOrderByAggregateInput = {
+    id?: SortOrder
+    images?: SortOrder
+    title?: SortOrder
+    url?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MenusAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type MenusMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    url?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MenusMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    url?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MenusSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type FactsOrderByRelevanceInput = {
@@ -2063,54 +3383,6 @@ export namespace Prisma {
 
   export type FactsSumOrderByAggregateInput = {
     id?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -2191,6 +3463,29 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {

@@ -42,3 +42,25 @@
 {"level":"error","message":"[Error ID: c01eea28db19] \"\\nInvalid `prisma.facts.update()` invocation:\\n\\n{\\n  where: {\\n    id: \\\"11\\\"\\n        ~~~~\\n  },\\n  data: {\\n    Icon: \\\"xd\\\",\\n    name: \\\"fefed\\\",\\n    value: \\\"22\\\"\\n  }\\n}\\n\\nArgument `id`: Invalid value provided. Expected Int, provided String.\"","timestamp":"2025-04-26T16:35:34.144Z"}
 {"level":"error","message":"[Error ID: 7f55513104bc] [\"Name must be unique\"]","timestamp":"2025-04-26T16:36:32.636Z"}
 {"level":"error","message":"[Error ID: 57da174924d2] [\"Name must be unique\"]","timestamp":"2025-04-26T16:36:36.608Z"}
+{"level":"error","message":"[Error ID: ddede3e12928] [\"title is a required field\",\"images is a required field\",\"url is a required field\"]","timestamp":"2025-04-28T04:47:05.303Z"}
+{"level":"error","message":"[Error ID: 73970363a846] [\"images must be a `array` type, but the final value was: `\\\"xd\\\"`.\"]","timestamp":"2025-04-28T04:48:15.287Z"}
+{"level":"error","message":"[Error ID: fe61d5c48e0d] \"\\nInvalid `prisma.menus.create()` invocation:\\n\\n\\nUnique constraint failed on the constraint: `Menus_title_key`\"","timestamp":"2025-04-28T04:48:51.105Z"}
+{"level":"error","message":"[Error ID: 0a51fe97e7df] \"\\nInvalid `prisma.menus.create()` invocation:\\n\\n\\nUnique constraint failed on the constraint: `Menus_title_key`\"","timestamp":"2025-04-28T04:49:36.111Z"}
+{"level":"error","message":"[Error ID: 542d070d8101] \"\\nInvalid `prisma.menus.create()` invocation:\\n\\n\\nUnique constraint failed on the constraint: `Menus_title_key`\"","timestamp":"2025-04-28T04:49:55.159Z"}
+{"level":"error","message":"[Error ID: 51d48e6d3f0f] [\"Title must be unique\"]","timestamp":"2025-04-28T04:50:50.226Z"}
+{"level":"error","message":"[Error ID: 97a2f13c2d46] [\"Title must be unique\"]","timestamp":"2025-04-28T04:51:25.509Z"}
+{"level":"error","message":"[Error ID: 86fa21f2d736] [\"Title must be unique\"]","timestamp":"2025-04-28T04:53:40.491Z"}
+{"level":"error","message":"[Error ID: fe935a063eb5] \"Invalid ID. Must be a number.\"","timestamp":"2025-04-28T05:07:49.781Z"}
+{"level":"error","message":"[Error ID: f5295693c35e] [\"ID is required\",\"Title must be unique\"]","timestamp":"2025-04-28T05:17:48.060Z"}
+{"level":"error","message":"[Error ID: fdc249ff7515] \"Cannot destructure property 'id' of 'req.body' as it is undefined.\"","timestamp":"2025-04-28T05:18:15.297Z"}
+{"level":"error","message":"[Error ID: 69aff5cd0b1d] \"Cannot destructure property 'id' of 'req.body' as it is undefined.\"","timestamp":"2025-04-28T05:18:24.435Z"}
+{"level":"error","message":"[Error ID: 1c47417610a9] \"Cannot destructure property 'id' of 'req.body' as it is undefined.\"","timestamp":"2025-04-28T05:18:42.712Z"}
+{"level":"error","message":"[Error ID: 65eb1c50067d] [\"ID is required\",\"Title must be unique\"]","timestamp":"2025-04-28T05:20:26.953Z"}
+{"level":"error","message":"[Error ID: 3d0da48ce79b] [\"Title must be unique\"]","timestamp":"2025-04-28T05:24:12.709Z"}
+{"level":"error","message":"[Error ID: 559d15066d56] [\"Title must be unique\"]","timestamp":"2025-04-28T05:24:29.428Z"}
+{"level":"error","message":"[Error ID: be82851a2caf] [\"Title must be unique\"]","timestamp":"2025-04-28T05:25:45.518Z"}
+{"level":"error","message":"[Error ID: 783d1ea6f3ab] \"Cannot set headers after they are sent to the client\"","timestamp":"2025-04-28T05:26:33.689Z"}
+{"level":"error","message":"[Error ID: dc4b132af495] \"Cannot set headers after they are sent to the client\"","timestamp":"2025-04-28T05:26:59.377Z"}
+{"level":"error","message":"[Error ID: bb6cc3dba539] \"Cannot set headers after they are sent to the client\"","timestamp":"2025-04-28T05:27:34.216Z"}
+{"level":"error","message":"[Error ID: 0b4e4a8274bc] [\"title is a required field\"]","timestamp":"2025-04-28T05:27:38.883Z"}
+{"level":"error","message":"[Error ID: N/A] Unexpected end of JSON input","timestamp":"2025-04-28T05:40:34.300Z"}

@@ -15,10 +15,12 @@ export const checkIfDataExistOrNot = async ({
   });
 
   if (!existing) {
-    return responseSender(res, {
+    responseSender(res, {
       statusCode: status.NOT_FOUND,
       success: false,
       message: `${message} not found`,
     });
+    return false;
   }
+  return true;
 };

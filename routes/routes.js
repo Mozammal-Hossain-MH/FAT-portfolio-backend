@@ -1,8 +1,13 @@
 import { Router } from "express";
 import factsRouter from "../modules/facts/facts.routes.js";
+import menusRouter from "../modules/menus/menus.routes.js";
 const router = Router();
 
 const moduleRoutes = [
+  {
+    path: "/v1.0/menus",
+    route: menusRouter,
+  },
   {
     path: "/v1.0/facts",
     route: factsRouter,
