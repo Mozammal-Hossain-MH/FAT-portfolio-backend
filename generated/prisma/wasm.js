@@ -126,6 +126,15 @@ exports.Prisma.MenusScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ServicesScalarFieldEnum = {
+  id: 'id',
+  images: 'images',
+  title: 'title',
+  details: 'details',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.FactsScalarFieldEnum = {
   id: 'id',
   Icon: 'Icon',
@@ -160,6 +169,11 @@ exports.Prisma.MenusOrderByRelevanceFieldEnum = {
   url: 'url'
 };
 
+exports.Prisma.ServicesOrderByRelevanceFieldEnum = {
+  title: 'title',
+  details: 'details'
+};
+
 exports.Prisma.FactsOrderByRelevanceFieldEnum = {
   Icon: 'Icon',
   name: 'name',
@@ -169,6 +183,7 @@ exports.Prisma.FactsOrderByRelevanceFieldEnum = {
 
 exports.Prisma.ModelName = {
   Menus: 'Menus',
+  Services: 'Services',
   Facts: 'Facts'
 };
 

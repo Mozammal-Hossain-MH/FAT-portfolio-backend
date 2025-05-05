@@ -64,3 +64,7 @@
 {"level":"error","message":"[Error ID: bb6cc3dba539] \"Cannot set headers after they are sent to the client\"","timestamp":"2025-04-28T05:27:34.216Z"}
 {"level":"error","message":"[Error ID: 0b4e4a8274bc] [\"title is a required field\"]","timestamp":"2025-04-28T05:27:38.883Z"}
 {"level":"error","message":"[Error ID: N/A] Unexpected end of JSON input","timestamp":"2025-04-28T05:40:34.300Z"}
+{"level":"error","message":"[Error ID: 6d0817bb8430] [\"details is a required field\"]","timestamp":"2025-05-05T04:46:51.117Z"}
+{"level":"error","message":"[Error ID: b8fd76f51dda] \"\\nInvalid `prisma.menus.create()` invocation:\\n\\n{\\n  data: {\\n    title: \\\"Packages\\\",\\n    images: [\\n      \\\"xd\\\"\\n    ],\\n    details: \\\"localhost:5173\\\",\\n+   url: String\\n  }\\n}\\n\\nArgument `url` is missing.\"","timestamp":"2025-05-05T04:46:59.750Z"}
+{"level":"error","message":"[Error ID: 7e67a0b4cb11] \"\\nInvalid `prisma.menus.create()` invocation:\\n\\n{\\n  data: {\\n    title: \\\"Packages\\\",\\n    images: [\\n      \\\"xd\\\"\\n    ],\\n    details: \\\"localhost:5173\\\",\\n+   url: String\\n  }\\n}\\n\\nArgument `url` is missing.\"","timestamp":"2025-05-05T04:48:22.283Z"}
+{"level":"error","message":"[Error ID: 9f9d28bdbe60] \"\\nInvalid `prisma.menus.create()` invocation:\\n\\n{\\n  data: {\\n    title: \\\"Packages\\\",\\n    images: [\\n      \\\"xd\\\"\\n    ],\\n    details: \\\"localhost:5173\\\",\\n+   url: String\\n  }\\n}\\n\\nArgument `url` is missing.\"","timestamp":"2025-05-05T04:49:42.880Z"}
