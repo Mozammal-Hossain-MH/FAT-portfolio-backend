@@ -24,6 +24,11 @@ export type Menus = $Result.DefaultSelection<Prisma.$MenusPayload>
  */
 export type Services = $Result.DefaultSelection<Prisma.$ServicesPayload>
 /**
+ * Model Partners
+ * 
+ */
+export type Partners = $Result.DefaultSelection<Prisma.$PartnersPayload>
+/**
  * Model Facts
  * 
  */
@@ -173,6 +178,16 @@ export class PrismaClient<
     * ```
     */
   get services(): Prisma.ServicesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.partners`: Exposes CRUD operations for the **Partners** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Partners
+    * const partners = await prisma.partners.findMany()
+    * ```
+    */
+  get partners(): Prisma.PartnersDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.facts`: Exposes CRUD operations for the **Facts** model.
@@ -625,6 +640,7 @@ export namespace Prisma {
   export const ModelName: {
     Menus: 'Menus',
     Services: 'Services',
+    Partners: 'Partners',
     Facts: 'Facts'
   };
 
@@ -644,7 +660,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "menus" | "services" | "facts"
+      modelProps: "menus" | "services" | "partners" | "facts"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -777,6 +793,72 @@ export namespace Prisma {
           count: {
             args: Prisma.ServicesCountArgs<ExtArgs>
             result: $Utils.Optional<ServicesCountAggregateOutputType> | number
+          }
+        }
+      }
+      Partners: {
+        payload: Prisma.$PartnersPayload<ExtArgs>
+        fields: Prisma.PartnersFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PartnersFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartnersPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PartnersFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartnersPayload>
+          }
+          findFirst: {
+            args: Prisma.PartnersFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartnersPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PartnersFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartnersPayload>
+          }
+          findMany: {
+            args: Prisma.PartnersFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartnersPayload>[]
+          }
+          create: {
+            args: Prisma.PartnersCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartnersPayload>
+          }
+          createMany: {
+            args: Prisma.PartnersCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.PartnersDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartnersPayload>
+          }
+          update: {
+            args: Prisma.PartnersUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartnersPayload>
+          }
+          deleteMany: {
+            args: Prisma.PartnersDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PartnersUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.PartnersUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartnersPayload>
+          }
+          aggregate: {
+            args: Prisma.PartnersAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePartners>
+          }
+          groupBy: {
+            args: Prisma.PartnersGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PartnersGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PartnersCountArgs<ExtArgs>
+            result: $Utils.Optional<PartnersCountAggregateOutputType> | number
           }
         }
       }
@@ -932,6 +1014,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     menus?: MenusOmit
     services?: ServicesOmit
+    partners?: PartnersOmit
     facts?: FactsOmit
   }
 
@@ -2874,6 +2957,929 @@ export namespace Prisma {
 
 
   /**
+   * Model Partners
+   */
+
+  export type AggregatePartners = {
+    _count: PartnersCountAggregateOutputType | null
+    _avg: PartnersAvgAggregateOutputType | null
+    _sum: PartnersSumAggregateOutputType | null
+    _min: PartnersMinAggregateOutputType | null
+    _max: PartnersMaxAggregateOutputType | null
+  }
+
+  export type PartnersAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type PartnersSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type PartnersMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    url: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PartnersMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    url: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PartnersCountAggregateOutputType = {
+    id: number
+    images: number
+    title: number
+    url: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type PartnersAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type PartnersSumAggregateInputType = {
+    id?: true
+  }
+
+  export type PartnersMinAggregateInputType = {
+    id?: true
+    title?: true
+    url?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PartnersMaxAggregateInputType = {
+    id?: true
+    title?: true
+    url?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PartnersCountAggregateInputType = {
+    id?: true
+    images?: true
+    title?: true
+    url?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type PartnersAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Partners to aggregate.
+     */
+    where?: PartnersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Partners to fetch.
+     */
+    orderBy?: PartnersOrderByWithRelationInput | PartnersOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PartnersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Partners from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Partners.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Partners
+    **/
+    _count?: true | PartnersCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PartnersAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PartnersSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PartnersMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PartnersMaxAggregateInputType
+  }
+
+  export type GetPartnersAggregateType<T extends PartnersAggregateArgs> = {
+        [P in keyof T & keyof AggregatePartners]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePartners[P]>
+      : GetScalarType<T[P], AggregatePartners[P]>
+  }
+
+
+
+
+  export type PartnersGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PartnersWhereInput
+    orderBy?: PartnersOrderByWithAggregationInput | PartnersOrderByWithAggregationInput[]
+    by: PartnersScalarFieldEnum[] | PartnersScalarFieldEnum
+    having?: PartnersScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PartnersCountAggregateInputType | true
+    _avg?: PartnersAvgAggregateInputType
+    _sum?: PartnersSumAggregateInputType
+    _min?: PartnersMinAggregateInputType
+    _max?: PartnersMaxAggregateInputType
+  }
+
+  export type PartnersGroupByOutputType = {
+    id: number
+    images: JsonValue
+    title: string
+    url: string
+    createdAt: Date
+    updatedAt: Date
+    _count: PartnersCountAggregateOutputType | null
+    _avg: PartnersAvgAggregateOutputType | null
+    _sum: PartnersSumAggregateOutputType | null
+    _min: PartnersMinAggregateOutputType | null
+    _max: PartnersMaxAggregateOutputType | null
+  }
+
+  type GetPartnersGroupByPayload<T extends PartnersGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PartnersGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PartnersGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PartnersGroupByOutputType[P]>
+            : GetScalarType<T[P], PartnersGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PartnersSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    images?: boolean
+    title?: boolean
+    url?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["partners"]>
+
+
+
+  export type PartnersSelectScalar = {
+    id?: boolean
+    images?: boolean
+    title?: boolean
+    url?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type PartnersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "images" | "title" | "url" | "createdAt" | "updatedAt", ExtArgs["result"]["partners"]>
+
+  export type $PartnersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Partners"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      images: Prisma.JsonValue
+      title: string
+      url: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["partners"]>
+    composites: {}
+  }
+
+  type PartnersGetPayload<S extends boolean | null | undefined | PartnersDefaultArgs> = $Result.GetResult<Prisma.$PartnersPayload, S>
+
+  type PartnersCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PartnersFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PartnersCountAggregateInputType | true
+    }
+
+  export interface PartnersDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Partners'], meta: { name: 'Partners' } }
+    /**
+     * Find zero or one Partners that matches the filter.
+     * @param {PartnersFindUniqueArgs} args - Arguments to find a Partners
+     * @example
+     * // Get one Partners
+     * const partners = await prisma.partners.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PartnersFindUniqueArgs>(args: SelectSubset<T, PartnersFindUniqueArgs<ExtArgs>>): Prisma__PartnersClient<$Result.GetResult<Prisma.$PartnersPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Partners that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PartnersFindUniqueOrThrowArgs} args - Arguments to find a Partners
+     * @example
+     * // Get one Partners
+     * const partners = await prisma.partners.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PartnersFindUniqueOrThrowArgs>(args: SelectSubset<T, PartnersFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PartnersClient<$Result.GetResult<Prisma.$PartnersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Partners that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartnersFindFirstArgs} args - Arguments to find a Partners
+     * @example
+     * // Get one Partners
+     * const partners = await prisma.partners.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PartnersFindFirstArgs>(args?: SelectSubset<T, PartnersFindFirstArgs<ExtArgs>>): Prisma__PartnersClient<$Result.GetResult<Prisma.$PartnersPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Partners that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartnersFindFirstOrThrowArgs} args - Arguments to find a Partners
+     * @example
+     * // Get one Partners
+     * const partners = await prisma.partners.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PartnersFindFirstOrThrowArgs>(args?: SelectSubset<T, PartnersFindFirstOrThrowArgs<ExtArgs>>): Prisma__PartnersClient<$Result.GetResult<Prisma.$PartnersPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Partners that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartnersFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Partners
+     * const partners = await prisma.partners.findMany()
+     * 
+     * // Get first 10 Partners
+     * const partners = await prisma.partners.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const partnersWithIdOnly = await prisma.partners.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PartnersFindManyArgs>(args?: SelectSubset<T, PartnersFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PartnersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Partners.
+     * @param {PartnersCreateArgs} args - Arguments to create a Partners.
+     * @example
+     * // Create one Partners
+     * const Partners = await prisma.partners.create({
+     *   data: {
+     *     // ... data to create a Partners
+     *   }
+     * })
+     * 
+     */
+    create<T extends PartnersCreateArgs>(args: SelectSubset<T, PartnersCreateArgs<ExtArgs>>): Prisma__PartnersClient<$Result.GetResult<Prisma.$PartnersPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Partners.
+     * @param {PartnersCreateManyArgs} args - Arguments to create many Partners.
+     * @example
+     * // Create many Partners
+     * const partners = await prisma.partners.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PartnersCreateManyArgs>(args?: SelectSubset<T, PartnersCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Partners.
+     * @param {PartnersDeleteArgs} args - Arguments to delete one Partners.
+     * @example
+     * // Delete one Partners
+     * const Partners = await prisma.partners.delete({
+     *   where: {
+     *     // ... filter to delete one Partners
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PartnersDeleteArgs>(args: SelectSubset<T, PartnersDeleteArgs<ExtArgs>>): Prisma__PartnersClient<$Result.GetResult<Prisma.$PartnersPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Partners.
+     * @param {PartnersUpdateArgs} args - Arguments to update one Partners.
+     * @example
+     * // Update one Partners
+     * const partners = await prisma.partners.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PartnersUpdateArgs>(args: SelectSubset<T, PartnersUpdateArgs<ExtArgs>>): Prisma__PartnersClient<$Result.GetResult<Prisma.$PartnersPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Partners.
+     * @param {PartnersDeleteManyArgs} args - Arguments to filter Partners to delete.
+     * @example
+     * // Delete a few Partners
+     * const { count } = await prisma.partners.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PartnersDeleteManyArgs>(args?: SelectSubset<T, PartnersDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Partners.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartnersUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Partners
+     * const partners = await prisma.partners.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PartnersUpdateManyArgs>(args: SelectSubset<T, PartnersUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Partners.
+     * @param {PartnersUpsertArgs} args - Arguments to update or create a Partners.
+     * @example
+     * // Update or create a Partners
+     * const partners = await prisma.partners.upsert({
+     *   create: {
+     *     // ... data to create a Partners
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Partners we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PartnersUpsertArgs>(args: SelectSubset<T, PartnersUpsertArgs<ExtArgs>>): Prisma__PartnersClient<$Result.GetResult<Prisma.$PartnersPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Partners.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartnersCountArgs} args - Arguments to filter Partners to count.
+     * @example
+     * // Count the number of Partners
+     * const count = await prisma.partners.count({
+     *   where: {
+     *     // ... the filter for the Partners we want to count
+     *   }
+     * })
+    **/
+    count<T extends PartnersCountArgs>(
+      args?: Subset<T, PartnersCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PartnersCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Partners.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartnersAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PartnersAggregateArgs>(args: Subset<T, PartnersAggregateArgs>): Prisma.PrismaPromise<GetPartnersAggregateType<T>>
+
+    /**
+     * Group by Partners.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartnersGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PartnersGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PartnersGroupByArgs['orderBy'] }
+        : { orderBy?: PartnersGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PartnersGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPartnersGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Partners model
+   */
+  readonly fields: PartnersFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Partners.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PartnersClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Partners model
+   */
+  interface PartnersFieldRefs {
+    readonly id: FieldRef<"Partners", 'Int'>
+    readonly images: FieldRef<"Partners", 'Json'>
+    readonly title: FieldRef<"Partners", 'String'>
+    readonly url: FieldRef<"Partners", 'String'>
+    readonly createdAt: FieldRef<"Partners", 'DateTime'>
+    readonly updatedAt: FieldRef<"Partners", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Partners findUnique
+   */
+  export type PartnersFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partners
+     */
+    select?: PartnersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partners
+     */
+    omit?: PartnersOmit<ExtArgs> | null
+    /**
+     * Filter, which Partners to fetch.
+     */
+    where: PartnersWhereUniqueInput
+  }
+
+  /**
+   * Partners findUniqueOrThrow
+   */
+  export type PartnersFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partners
+     */
+    select?: PartnersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partners
+     */
+    omit?: PartnersOmit<ExtArgs> | null
+    /**
+     * Filter, which Partners to fetch.
+     */
+    where: PartnersWhereUniqueInput
+  }
+
+  /**
+   * Partners findFirst
+   */
+  export type PartnersFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partners
+     */
+    select?: PartnersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partners
+     */
+    omit?: PartnersOmit<ExtArgs> | null
+    /**
+     * Filter, which Partners to fetch.
+     */
+    where?: PartnersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Partners to fetch.
+     */
+    orderBy?: PartnersOrderByWithRelationInput | PartnersOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Partners.
+     */
+    cursor?: PartnersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Partners from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Partners.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Partners.
+     */
+    distinct?: PartnersScalarFieldEnum | PartnersScalarFieldEnum[]
+  }
+
+  /**
+   * Partners findFirstOrThrow
+   */
+  export type PartnersFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partners
+     */
+    select?: PartnersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partners
+     */
+    omit?: PartnersOmit<ExtArgs> | null
+    /**
+     * Filter, which Partners to fetch.
+     */
+    where?: PartnersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Partners to fetch.
+     */
+    orderBy?: PartnersOrderByWithRelationInput | PartnersOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Partners.
+     */
+    cursor?: PartnersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Partners from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Partners.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Partners.
+     */
+    distinct?: PartnersScalarFieldEnum | PartnersScalarFieldEnum[]
+  }
+
+  /**
+   * Partners findMany
+   */
+  export type PartnersFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partners
+     */
+    select?: PartnersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partners
+     */
+    omit?: PartnersOmit<ExtArgs> | null
+    /**
+     * Filter, which Partners to fetch.
+     */
+    where?: PartnersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Partners to fetch.
+     */
+    orderBy?: PartnersOrderByWithRelationInput | PartnersOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Partners.
+     */
+    cursor?: PartnersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Partners from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Partners.
+     */
+    skip?: number
+    distinct?: PartnersScalarFieldEnum | PartnersScalarFieldEnum[]
+  }
+
+  /**
+   * Partners create
+   */
+  export type PartnersCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partners
+     */
+    select?: PartnersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partners
+     */
+    omit?: PartnersOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Partners.
+     */
+    data: XOR<PartnersCreateInput, PartnersUncheckedCreateInput>
+  }
+
+  /**
+   * Partners createMany
+   */
+  export type PartnersCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Partners.
+     */
+    data: PartnersCreateManyInput | PartnersCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Partners update
+   */
+  export type PartnersUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partners
+     */
+    select?: PartnersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partners
+     */
+    omit?: PartnersOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Partners.
+     */
+    data: XOR<PartnersUpdateInput, PartnersUncheckedUpdateInput>
+    /**
+     * Choose, which Partners to update.
+     */
+    where: PartnersWhereUniqueInput
+  }
+
+  /**
+   * Partners updateMany
+   */
+  export type PartnersUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Partners.
+     */
+    data: XOR<PartnersUpdateManyMutationInput, PartnersUncheckedUpdateManyInput>
+    /**
+     * Filter which Partners to update
+     */
+    where?: PartnersWhereInput
+    /**
+     * Limit how many Partners to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Partners upsert
+   */
+  export type PartnersUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partners
+     */
+    select?: PartnersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partners
+     */
+    omit?: PartnersOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Partners to update in case it exists.
+     */
+    where: PartnersWhereUniqueInput
+    /**
+     * In case the Partners found by the `where` argument doesn't exist, create a new Partners with this data.
+     */
+    create: XOR<PartnersCreateInput, PartnersUncheckedCreateInput>
+    /**
+     * In case the Partners was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PartnersUpdateInput, PartnersUncheckedUpdateInput>
+  }
+
+  /**
+   * Partners delete
+   */
+  export type PartnersDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partners
+     */
+    select?: PartnersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partners
+     */
+    omit?: PartnersOmit<ExtArgs> | null
+    /**
+     * Filter which Partners to delete.
+     */
+    where: PartnersWhereUniqueInput
+  }
+
+  /**
+   * Partners deleteMany
+   */
+  export type PartnersDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Partners to delete
+     */
+    where?: PartnersWhereInput
+    /**
+     * Limit how many Partners to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Partners without action
+   */
+  export type PartnersDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partners
+     */
+    select?: PartnersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partners
+     */
+    omit?: PartnersOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Model Facts
    */
 
@@ -3838,6 +4844,18 @@ export namespace Prisma {
   export type ServicesScalarFieldEnum = (typeof ServicesScalarFieldEnum)[keyof typeof ServicesScalarFieldEnum]
 
 
+  export const PartnersScalarFieldEnum: {
+    id: 'id',
+    images: 'images',
+    title: 'title',
+    url: 'url',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type PartnersScalarFieldEnum = (typeof PartnersScalarFieldEnum)[keyof typeof PartnersScalarFieldEnum]
+
+
   export const FactsScalarFieldEnum: {
     id: 'id',
     Icon: 'Icon',
@@ -3896,6 +4914,14 @@ export namespace Prisma {
   };
 
   export type ServicesOrderByRelevanceFieldEnum = (typeof ServicesOrderByRelevanceFieldEnum)[keyof typeof ServicesOrderByRelevanceFieldEnum]
+
+
+  export const PartnersOrderByRelevanceFieldEnum: {
+    title: 'title',
+    url: 'url'
+  };
+
+  export type PartnersOrderByRelevanceFieldEnum = (typeof PartnersOrderByRelevanceFieldEnum)[keyof typeof PartnersOrderByRelevanceFieldEnum]
 
 
   export const FactsOrderByRelevanceFieldEnum: {
@@ -4077,6 +5103,66 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Services"> | Date | string
   }
 
+  export type PartnersWhereInput = {
+    AND?: PartnersWhereInput | PartnersWhereInput[]
+    OR?: PartnersWhereInput[]
+    NOT?: PartnersWhereInput | PartnersWhereInput[]
+    id?: IntFilter<"Partners"> | number
+    images?: JsonFilter<"Partners">
+    title?: StringFilter<"Partners"> | string
+    url?: StringFilter<"Partners"> | string
+    createdAt?: DateTimeFilter<"Partners"> | Date | string
+    updatedAt?: DateTimeFilter<"Partners"> | Date | string
+  }
+
+  export type PartnersOrderByWithRelationInput = {
+    id?: SortOrder
+    images?: SortOrder
+    title?: SortOrder
+    url?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _relevance?: PartnersOrderByRelevanceInput
+  }
+
+  export type PartnersWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    title?: string
+    AND?: PartnersWhereInput | PartnersWhereInput[]
+    OR?: PartnersWhereInput[]
+    NOT?: PartnersWhereInput | PartnersWhereInput[]
+    images?: JsonFilter<"Partners">
+    url?: StringFilter<"Partners"> | string
+    createdAt?: DateTimeFilter<"Partners"> | Date | string
+    updatedAt?: DateTimeFilter<"Partners"> | Date | string
+  }, "id" | "title">
+
+  export type PartnersOrderByWithAggregationInput = {
+    id?: SortOrder
+    images?: SortOrder
+    title?: SortOrder
+    url?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: PartnersCountOrderByAggregateInput
+    _avg?: PartnersAvgOrderByAggregateInput
+    _max?: PartnersMaxOrderByAggregateInput
+    _min?: PartnersMinOrderByAggregateInput
+    _sum?: PartnersSumOrderByAggregateInput
+  }
+
+  export type PartnersScalarWhereWithAggregatesInput = {
+    AND?: PartnersScalarWhereWithAggregatesInput | PartnersScalarWhereWithAggregatesInput[]
+    OR?: PartnersScalarWhereWithAggregatesInput[]
+    NOT?: PartnersScalarWhereWithAggregatesInput | PartnersScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Partners"> | number
+    images?: JsonWithAggregatesFilter<"Partners">
+    title?: StringWithAggregatesFilter<"Partners"> | string
+    url?: StringWithAggregatesFilter<"Partners"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Partners"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Partners"> | Date | string
+  }
+
   export type FactsWhereInput = {
     AND?: FactsWhereInput | FactsWhereInput[]
     OR?: FactsWhereInput[]
@@ -4253,6 +5339,66 @@ export namespace Prisma {
     images?: JsonNullValueInput | InputJsonValue
     title?: StringFieldUpdateOperationsInput | string
     details?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PartnersCreateInput = {
+    images: JsonNullValueInput | InputJsonValue
+    title: string
+    url: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PartnersUncheckedCreateInput = {
+    id?: number
+    images: JsonNullValueInput | InputJsonValue
+    title: string
+    url: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PartnersUpdateInput = {
+    images?: JsonNullValueInput | InputJsonValue
+    title?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PartnersUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    images?: JsonNullValueInput | InputJsonValue
+    title?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PartnersCreateManyInput = {
+    id?: number
+    images: JsonNullValueInput | InputJsonValue
+    title: string
+    url: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PartnersUpdateManyMutationInput = {
+    images?: JsonNullValueInput | InputJsonValue
+    title?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PartnersUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    images?: JsonNullValueInput | InputJsonValue
+    title?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4526,6 +5672,45 @@ export namespace Prisma {
   }
 
   export type ServicesSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type PartnersOrderByRelevanceInput = {
+    fields: PartnersOrderByRelevanceFieldEnum | PartnersOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type PartnersCountOrderByAggregateInput = {
+    id?: SortOrder
+    images?: SortOrder
+    title?: SortOrder
+    url?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PartnersAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type PartnersMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    url?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PartnersMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    url?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PartnersSumOrderByAggregateInput = {
     id?: SortOrder
   }
 
